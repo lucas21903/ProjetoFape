@@ -1,0 +1,42 @@
+empresas = []
+funcionarios = []
+
+def criar_empresa(id, nome, endereco):
+    empresa = {
+        'id': id,
+        'nome': nome,
+        'endereco': endereco,
+        'funcionarios': []
+    }
+    empresas.append(empresa)
+    return empresa
+
+def criar_funcionario(id, nome, cargo, salario, empresa):
+    funcionario = {
+        'id': id,
+        'nome': nome,
+        'cargo': cargo,
+        'salario': salario,
+        'empresa_id': empresa['id']
+    }
+    funcionarios.append(funcionario)
+    empresa['funcionarios'].append(funcionario)
+    return funcionario
+
+def exibir_informacoes_empresa(empresa):
+    print(f"Empresa: {empresa['nome']}, Endereço: {empresa['endereco']}")
+    for funcionario in empresa['funcionarios']:
+        print(f"  Funcionário: {funcionario['nome']}, Cargo: {funcionario['cargo']}, Salário: {funcionario['salario']}")
+
+# Criando empresas
+empresa1 = criar_empresa(1, 'Itau', 'Brasil')
+empresa2 = criar_empresa(2, 'Bradesco', 'brasil')
+
+# Criando funcionários e associando às empresas
+funcionario1 = criar_funcionario(1, 'João Silva', 'Desenvolvedor', 5000.00, empresa1)
+funcionario2 = criar_funcionario(2, 'Maria Souza', 'Gerente de Projetos', 7000.00, empresa1)
+funcionario3 = criar_funcionario(3, 'Carlos Pereira', 'Designer', 4500.00, empresa2)
+
+# Exibindo informações
+exibir_informacoes_empresa(empresa1)
+exibir_informacoes_empresa(empresa2)
